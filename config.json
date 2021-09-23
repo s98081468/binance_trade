@@ -1,11 +1,11 @@
 {
     "platform": "binance_spot",
     "symbol": "BTCUSDT",
-    "api_key": "replace your api key here",
-    "api_secret": "replace your api secret here",
+    "api_key": "CBZRznUdwAFH8vLVBbYOfBJVg4XVmUS6zyZshnQjP6fels9KCVKuSRT1w44yJj54",
+    "api_secret":"yQFoy4dQLrDOVMbwVutjJsYaDEB8u5CXVXyQWgq55LRqaXl1PA8NhTrgnaCZqkBB",
     "gap_percent": 0.001,
     "quantity": 0.001,
     "max_orders": 1,
     "proxy_host": "",
     "proxy_port": 0
-  }
+  }  

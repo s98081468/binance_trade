@@ -1,0 +1,160 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head>
+    <title>幣安交易機器人</title>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <style>
+            * {
+              box-sizing: border-box;
+            }
+            
+            /* Create two equal columns that floats next to each other */
+            .column-left {
+              float: left;
+              width: 33%;
+              padding: 10px;
+            }
+            .column-right {
+              float: right;
+              width: 67%;
+              padding: 10px;
+            }
+            
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+
+
+    </style>
+</head>
+
+<!-- bgColor -->
+<!-- <div class="column" style="background-color:#FFB695;"></div> -->
+
+<body>
+<h1>{{ title }}</h1>
+
+<div id="chart"></div>
+
+<div id="trades"></div>
+
+<div id="choose trade">
+    <div style="padding: 10px; margin-top: 10px;">
+        <select name="symbol">
+            {% for symbol in symbols %}
+            <option>{{ symbol['symbol'] }}</option>
+            {% endfor %}
+        </select>
+
+        {% for item in often_list %}
+        <form action="/選擇特定交易對" method="post">
+            <input type="submit" name=symbol_item value='ddd'/>
+        </form>
+        {% endfor %}
+
+    </div>
+</div>
+
+<div class="buyandsell">
+    <div class="column-left">
+        <div style="border: solid rgb(113, 207, 104) 4px; padding: 20px; width: 600px; margin-top: 20px;">
+            <h3>買入</h3>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div style="padding: 10px; margin-bottom: 10px; background: rgb(226, 150, 106); border: solid red 1px; color: red;">
+
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+
+            {% endif %}
+            {% endwith %}
+
+            <form action="/buy" method="post">
+                <input type="text" id="quantity_buy" name="quantity_buy" placeholder="ex: 0.001"/>
+                <input type="submit" name="buy" value="buy"/>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="column-right">
+        <div style="border: solid rgb(233, 67, 26) 4px; padding: 20px; width: 600px; margin-top: 20px;">
+            <h3>賣出</h3>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div style="padding: 10px; margin-bottom: 10px; background: rgb(226, 150, 106); border: solid red 1px; color: red;">
+
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+
+            {% endif %}
+            {% endwith %}
+
+            <form action="/sell" method="post">
+                <input type="text" id="quantity_sell" name="quantity_sell" placeholder="ex: 0.001"/>
+                <input type="submit" name="sell" value="sell"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div id="settings">
+    <h3>設定</h3>
+    <input type="checkbox"/> RSI
+    <input type="text" id="rsi_length" name="rsi_length" placeholder="14"/>
+    Overbought
+    <input type="text" id="rsi_overbought" name="rsi_overbought" placeholder="70"/>
+    Oversold
+    <input type="text" id="rsi_oversold" name="rsi_oversold" placeholder="30"/>
+</div>
+
+<div id="my_balances">
+    <h2>帳戶資產</h2>
+
+    <table>
+        {% for balance in my_balances %}
+        <tr>
+            <td>
+                {{ balance['asset'] }}
+            </td>
+            <td>
+                {{ balance['free'] }}
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+</div>
+
+
+<script>
+        //var binanceSocket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade");
+
+        var tradeDiv = document.getElementById('trades')
+
+        // binanceSocket.onmessage = function (event) {
+        //     console.log(event.data);
+        //     var messageObject = JSON.parse(event.data)
+        //     tradeDiv.append(messageObject.p)
+        // }
+
+
+
+
+
+
+
+</script>
+<script src="{{ url_for('static', filename='chart.js') }}"></script>
+</body>
+</html>

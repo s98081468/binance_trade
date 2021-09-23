@@ -22,7 +22,7 @@ if __name__ == '__main__':
  
     orders = trader.http_client.cancel_open_orders(config.symbol)
     print(f"cancel orders: {orders}")
-
+    print("hello")
     while True:
         try:
             trader.start()

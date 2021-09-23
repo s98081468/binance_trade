@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>幣安交易機器人</title>
+        <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    </head>
+
+    <body>
+       <h2>{{ title }}</h2>
+
+       <div id ="chart"></div>
+       
+       <div id ="trades"></div>
+       
+       <h3>設定</h3>
+       <form action="/buy" method="post">
+          <input type="text" id="quantity" name="quantity" placeholder="ex:.0.001"/>
+          <select>
+             {% for symbol in symbols %}
+               <option>{{symbol['symbol']}}</option>>
+             {% endfor %}
+           </select>
+           <input type="submit" name="buy" value="buy"/>
+        
+        </form>
+
+
+        <br>
+
+
+       <div id="settings"></div>
+            
+            
+                <input type="checkbox" /> RSI
+                <input type="text" id="rsi_length" name="rsi_length" placeholder="14"/>
+                
+                 超賣:
+                <input type="text" id="rsi_oversold" name="rsi_oversold" placeholder="30" >
+                
+                 超買:
+                <input type="text" id="rsi_overbought" name="rsi_overbought" placeholder="70" >
+       </div>
+
+
+       <div id="my_balances">
+        <h2>Balances</h2>
+            <table>
+                {% for balance in my_balances %}
+                <tr>
+                    <td>
+                        {{ balance['asset'] }}
+                    </td>
+                    <td>
+                        {{ balance['free'] }}
+                    </td>    
+                </tr>
+                {% endfor %}
+             </table>
+             
+        </div>
+
+
+        <script>
+            //var binanceSocket = new WebSocket("wss://stream.binance.com:9443/ws/ethusdt@trade");
+           
+            var tradeDiv = document.getElementById('trades')
+           /*
+            binanceSocket.onmessage = function (event){
+                console.log(event.data);
+
+                var messageObject = JSON.parse(event.data)
+                tradeDiv.append(messageObject.p)
+            }
+            */
+        </script>
+        <script src="{{ url_for('static', filename='chart.js') }}"></script>
+        
+    </body>
+</html>
