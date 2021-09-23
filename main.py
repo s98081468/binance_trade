@@ -14,8 +14,8 @@ if __name__ == '__main__':
 
 
     config.loads('./config.json')
-#合約與現貨切換
-    if config.platform == 'binance_spot':
+   
+    if config.platform == 'binance_spot': #合約與現貨切換
         trader = BinanceSpotTrader()
     else:
         trader = BinanceFutureTrader()
