@@ -1,8 +1,8 @@
 {
     "platform": "binance_spot",
     "symbol": "BTCUSDT",
-    "api_key": "CBZRznUdwAFH8vLVBbYOfBJVg4XVmUS6zyZshnQjP6fels9KCVKuSRT1w44yJj54",
-    "api_secret":"yQFoy4dQLrDOVMbwVutjJsYaDEB8u5CXVXyQWgq55LRqaXl1PA8NhTrgnaCZqkBB",
+    "api_key": "please enter your api ",
+    "api_secret":"please enter your api secret",
     "gap_percent": 0.001,
     "quantity": 0.001,
     "max_orders": 1,
